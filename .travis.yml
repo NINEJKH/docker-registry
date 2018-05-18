@@ -12,7 +12,7 @@ env:
     - secure: HqZIrUf5cAQ+7yBLrPWMIESctkdLdZaUhALDRFCH0huKi5n9yR+uKpIcDb3jdYLcGV9o4NN0b3Ar0lDN+12ihzRKfyCNd6V4XDP2u7OSKv+gJF5wj/ViStCfNr7y6gjyc8Lrx0CT2hL4MRj4jq67N0o21xlV4p8XyIKEI/iwaFDTrLfOfnZiUFmshGoJj3QLggy4KgUttjt8jFyBH/Gdyb7HEhjXqw6faql3+hPVFjvU8zePrgFvF4PI/EWesxKWgkHujDRkzXtJk8ojzeBfw1+jweR/kTGSVG2LMQeBMCK0d5dg6JMzbb1u4K86sqNORtJt2IcYreSDV4LnNNjWGmP3bthxnKByEViOm63tfejQ7pBxQ/hlXWdT1Y/Box0Hq8wcI/pJGbzQ5TUuu/D0qb2FP40jD1HndypanFbA06r0RdRH5BF9gRDNNAeVJwVeNxFjdNh/NEt/s1sZt58L6vMEkjesL/DT0xKkaR+oGGoZppSvni6y96OQHjJqYAGBVEekwsZ13ttBhgTF5+XCgNCB2sxcHqW6nJ84u/eUwC4inCh+wfJh0GO/PpphzCLsuO6XcXkFKBo43epY3pwSdDj2bdA1N/Gt8Hga5O/wVFcbaJFzKC2GmajjesaJK/mHsX7lvqzOPF1czPoCuI8Wtrc3v7PyVNG9PcWDvkTEdr8=
 
 before_install:
-  - docker build -t "${DOCKER_REPO}:${COMMIT}" .
+  - docker build -t "${DOCKER_REPO}:${TRAVIS_COMMIT}" .
 
 deploy:
   provider: script

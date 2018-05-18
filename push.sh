@@ -3,14 +3,14 @@
 set -e
 
 if [[ "${TRAVIS_BRANCH}" == "master" ]]; then
-  TAG="latest"
+  DOCKER_TAG="latest"
 else
-  TAG="${TRAVIS_BRANCH}"
+  DOCKER_TAG="${TRAVIS_BRANCH}"
 fi
 
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
-docker tag "${DOCKER_REPO}:${COMMIT}" "${DOCKER_REPO}:${TAG}"
-docker tag "${DOCKER_REPO}:${COMMIT}" "${DOCKER_REPO}:travis-${TRAVIS_BUILD_NUMBER}"
+docker tag "${DOCKER_REPO}:${TRAVIS_COMMIT}" "${DOCKER_REPO}:${DOCKER_TAG}"
+docker tag "${DOCKER_REPO}:${TRAVIS_COMMIT}" "${DOCKER_REPO}:travis-${TRAVIS_BUILD_NUMBER}"
 
 docker push "${DOCKER_REPO}"
