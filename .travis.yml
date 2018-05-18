@@ -1,13 +1,24 @@
 sudo: required
 
+language: minimal
+
 services:
   - docker
 
+env:
+  global:
+    - DOCKER_REPO: 9jkh/registry
+    # DOCKER_USERNAME
+    - secure: mDxOWevmU1IQm3x5yB+lP86I5Yp2UvP+JxRiz6GtujwwoZ87qDT1Adio6b14W7rjZ/fM97tYObcLLyN6BOUiHY6rmVBUVeRVzKSt3dFz4KcOxMX9BMD0K3I7zRzgEDcQvdMT+x7zwhz4xfrRpEmql/vo0YjOAsznGNpnSN3BeDrv3/zMAAyT0Q1Lt56QIv78JUtmKePbjmSPEAex623O9ts4P0a3we80sKVqOhomeYr4WzFpUnULXgBjfMuXhOT/GDCyKRH1zc1MglfdKOv0LwIpy9FLjBc/vHWR7/FzxezulxkKMzIhTev48g5lUDK6Q7VV8A2WXQd1LEQox0yCLdYbDX04A+Wq9XtU69XmyRRXpCb5zC8Df1KcyrgrdDfNl4YmscuRVyZ1IXMJjwZX0+jgBlaOmlmGulmMCTyy9tsYYQledRjxi0VQYb2w/SUJTd3h3Y8FofRjE+VMYTkUlfSmxQv+p2VNVq8UQTpgbUy6rAs/hIGXieH82Pip02CN717S79Qp/Q9FPBqySQADWxdX6R8Z+lvtu8JVvqQp+GLROY+MJcSmWgvlpqq4vM4/PCfXStoq6fjNhk+ysOLplsL0CTu4quosvT3BgkZddjvcGatzCuxah5g/02YALTqT70x5dx8Ne5Uv9I1MC6et35b3q2R/YxOYoLxs52uLTcA=
+    # DOCKER_PASSWORD
+    - secure: HqZIrUf5cAQ+7yBLrPWMIESctkdLdZaUhALDRFCH0huKi5n9yR+uKpIcDb3jdYLcGV9o4NN0b3Ar0lDN+12ihzRKfyCNd6V4XDP2u7OSKv+gJF5wj/ViStCfNr7y6gjyc8Lrx0CT2hL4MRj4jq67N0o21xlV4p8XyIKEI/iwaFDTrLfOfnZiUFmshGoJj3QLggy4KgUttjt8jFyBH/Gdyb7HEhjXqw6faql3+hPVFjvU8zePrgFvF4PI/EWesxKWgkHujDRkzXtJk8ojzeBfw1+jweR/kTGSVG2LMQeBMCK0d5dg6JMzbb1u4K86sqNORtJt2IcYreSDV4LnNNjWGmP3bthxnKByEViOm63tfejQ7pBxQ/hlXWdT1Y/Box0Hq8wcI/pJGbzQ5TUuu/D0qb2FP40jD1HndypanFbA06r0RdRH5BF9gRDNNAeVJwVeNxFjdNh/NEt/s1sZt58L6vMEkjesL/DT0xKkaR+oGGoZppSvni6y96OQHjJqYAGBVEekwsZ13ttBhgTF5+XCgNCB2sxcHqW6nJ84u/eUwC4inCh+wfJh0GO/PpphzCLsuO6XcXkFKBo43epY3pwSdDj2bdA1N/Gt8Hga5O/wVFcbaJFzKC2GmajjesaJK/mHsX7lvqzOPF1czPoCuI8Wtrc3v7PyVNG9PcWDvkTEdr8=
+
 before_install:
-  - docker build -t 9jkh/registry .
+  - docker build -t "${DOCKER_REPO}:${TRAVIS_COMMIT}" .
 
 deploy:
   provider: script
-  script: ./push.sh
+  script: "./push.sh"
   on:
+    tags: true
     branch: master
