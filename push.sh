@@ -4,8 +4,11 @@ set -e
 
 if [[ "${TRAVIS_BRANCH}" == "master" ]]; then
   DOCKER_TAG="latest"
+elif [[ ! -z "${TRAVIS_TAG}" ]]; then
+  DOCKER_TAG="${TRAVIS_TAG}"
 else
-  DOCKER_TAG="${TRAVIS_BRANCH}"
+  echo "not master branch or tag, skipping!"
+  exit
 fi
 
 echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin

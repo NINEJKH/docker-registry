@@ -20,5 +20,4 @@ deploy:
   provider: script
   script: "./push.sh"
   on:
-    tags: true
-    branch: master
+    all_branches: true
