@@ -1,7 +1,7 @@
 FROM registry
 
-ENV GOPATH="${HOME}/go"
-ENV PATH="${PATH}:${GOPATH}/bin"
+ARG GOPATH="${HOME}/go"
+ARG PATH="${PATH}:${GOPATH}/bin"
 
 RUN apk update && apk add --no-cache go git
 
